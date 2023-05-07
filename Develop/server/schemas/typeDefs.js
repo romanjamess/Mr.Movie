@@ -11,10 +11,16 @@ type User {
 }
 
 type Query {
-    users : User
+  users: [User]
+  user(username: String!): User
+  thoughts(username: String): [Thought]
+  thought(thoughtId: ID!): Thought
+  me: User
 }
 
-`
+type Mutation {
+  addUser(username: String!, email: String!, password: String!): Auth
+`;
 
 
 module.exports = typeDefs;
