@@ -4,7 +4,7 @@
   "private": true,
   "options": {
     "allowedHosts": ["localhost", ".localhost"],
-    "proxy": "https://localhost:3001/"
+    "proxy": "http://localhost:3001/"
   },
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
@@ -17,6 +17,7 @@
     "react-bootstrap": "^2.7.0",
     "react-dom": "^16.13.1",
     "react-router-dom": "^6.2.1",
+    "@apollo/client": "^3.5.8",
     "react-scripts": "^5.0.1"
   },
   "scripts": {
