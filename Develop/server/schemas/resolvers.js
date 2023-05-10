@@ -13,8 +13,8 @@ const { signToken } = require('../utils/auth');
             const token = signToken(user);
             return { token, user }
         },
-        loginUser: async (parent, { email }) => {
-            const user =  await User.find({ email });
+        loginUser: async (parent, { email , password}) => {
+            const user =  await User.findOne({ email });
             const correctPw = await user.isCorrectPassword(password);
             
             if (!correctPw) {
