@@ -2,10 +2,11 @@ const { User } = require("../models")
 const { signToken } = require('../utils/auth');
 
     const resolvers = {
-        Query: {
-        
-        
-        },
+       Query: {
+          me: async (parent , args, context) => {
+            return User.find({_id: context.user._id})
+          }
+       },
 
     Mutation:{
         addUser: async (parent, {username, email, password }) => {
@@ -22,7 +23,17 @@ const { signToken } = require('../utils/auth');
               }
             const token = signToken(user)
             return {token , user}
-            }
+            },
+        removeBook: async (parent, {bookId}, context) => {
+           return User.findOneAndUpdate({
+           _id: context.user._id
+           }, {$pull: { savedBooks: {bookId} }})
+        },
+        saveBook: async (parent , args, context) => {
+            return User.findByIdAndUpdate({
+                _id: context.user._id
+            }, {$addToSet: {savedBooks: args}})
+        }
         },
     };
 
