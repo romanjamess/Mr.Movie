@@ -24,14 +24,19 @@ mutation loginUser($email: String! , $password: String!){
 }
 `
 export const SAVE_BOOK = gql `
-mutation saveBook($authors: String!, $bookId: String!, $image: String!, $link: String!, $title: String!) {
-  saveBook(authors: $authors, bookId: $bookId, image: $image, link: $link, title: $title) {
+mutation saveBook($authors: [String!], $bookId: String!, $image: String!, $link: String, $title: String!, $description: String!) {
+  saveBook(authors: $authors, bookId: $bookId, image: $image, link: $link, title: $title, description: $description ) {
     _id
     savedBooks {
       bookId
+      description
+      authors
+      image
+      link
+      title
     }
   }
-} `
+}`
 
 export const REMOVE_BOOK = gql `
 mutation RemoveBook($bookId: String!) {
